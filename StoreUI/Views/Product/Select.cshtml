@@ -1,0 +1,47 @@
+﻿@model IEnumerable<models.Products>
+
+@{
+    ViewData["Title"] = "Select";
+}
+
+<h1>Select</h1>
+
+<p>
+    <a asp-controller="Order" asp-action="ConfirmOrder">ConfirmOrder</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductsId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                <a asp-action="Add" asp-route-id="@item.ProductsId">Add</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

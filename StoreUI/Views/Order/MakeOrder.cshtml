@@ -1,0 +1,37 @@
+﻿@model models.Order
+
+@{
+    ViewData["Title"] = "MakeOrder";
+}
+
+<h1>MakeOrder</h1>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="BuildOrder" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LocationId"  class="control-label"></label>
+                <select asp-for="LocationId" id="loc" name="LocationId" class ="form-control" asp-items="@new SelectList(ViewBag.LocationId)" ></select>
+            </div>
+            <div class="form-group">
+                <p>@ViewData["userID"]</p>
+                
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" id="user" name="UserId" class="form-control"/>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <p></p>
+            <div class="form-group">
+
+                <input type="submit" value="Create" class="btn btn-primary" onclick="location.href="@Url.Action("BuildOrder", "Order")""/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

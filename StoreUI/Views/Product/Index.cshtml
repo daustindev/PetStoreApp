@@ -1,0 +1,42 @@
+﻿@model IEnumerable<models.Products>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Price
+            </th>
+            <th>
+                Item Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                input type="button" value="Add" onclick="location.href='@Url.Action("Add", "ProductController")'"/> |
+                <a asp-action="Details" asp-route-id="@item.ProductsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<input type="button"
